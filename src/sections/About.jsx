@@ -165,9 +165,9 @@ export default function About({ language = 'hi' }) {
               </span>
             </div>
 
-            <h3 className="font-hindi text-[#4b2f1a] text-3xl font-bold mb-5 leading-relaxed">
+            <h3 className="font-hindi text-[#4b2f1a] text-3xl font-bold mb-5 leading-[1.5] pt-[0.18em] pb-[0.08em] overflow-visible">
               {isEnglish ? 'With 10 years of experience,' : '10 वर्षों के अनुभव के साथ,'}<br />
-              <span className="text-gold-gradient">{isEnglish ? 'your trusted astrology guide' : 'आपके विश्वस्त ज्योतिषाचार्य'}</span>
+              <span className="text-gold-gradient inline-block pt-[0.08em]">{isEnglish ? 'your trusted astrology guide' : 'आपके विश्वस्त ज्योतिषाचार्य'}</span>
             </h3>
 
             <p className="font-body text-[#6b4a2b]/90 text-base leading-relaxed mb-4">{introText}</p>
