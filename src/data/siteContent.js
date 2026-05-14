@@ -6,7 +6,7 @@ export const brand = {
   website: 'nareshpandit.com',
   phone1: '9166596135',
   phone2: '9106820083',
-  email: 'nareshrawal.jyotish@gmail.com',
+  email: 'nareshrawal26326@gmail.com',
   whatsapp: '919166596135',
   address: 'जवाई बांध रोड, सुमेरपुर, पाली, राजस्थान - 306902',
   addressEn: 'Jawai Bandh Road, Sumerpur, Pali, Rajasthan - 306902',
