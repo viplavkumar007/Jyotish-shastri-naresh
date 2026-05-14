@@ -3,7 +3,50 @@ import { AnimatePresence, motion } from 'framer-motion'
 import logo from '../assets/logo.png'
 import { brand } from '../data/siteContent'
 
-export default function Navbar({ language = 'hi' }) {
+function LanguageToggle({ isEnglish, onToggleLanguage, compact = false }) {
+  return (
+    <button
+      type="button"
+      onClick={onToggleLanguage}
+      aria-pressed={isEnglish}
+      className={`relative flex items-center rounded-full px-3 transition-all duration-300 ${
+        compact
+          ? `h-10 w-28 border-2 ${
+              isEnglish
+                ? 'justify-start border-[#b9ffbf] bg-[#10db53] shadow-[0_8px_20px_rgba(16,219,83,0.22)]'
+                : 'justify-end border-[#f3e6c8] bg-[#d8c8a6] shadow-[0_8px_20px_rgba(122,76,24,0.14)]'
+            }`
+          : `h-[48px] w-[148px] border-[3px] ${
+              isEnglish
+                ? 'justify-start border-[#b9ffbf] bg-[#10db53] shadow-[0_12px_28px_rgba(16,219,83,0.24)]'
+                : 'justify-end border-[#f3e6c8] bg-[#d8c8a6] shadow-[0_12px_28px_rgba(122,76,24,0.14)]'
+            }`
+      }`}
+    >
+      <span
+        className={`absolute font-black leading-none transition-all duration-300 ${
+          compact
+            ? isEnglish
+              ? 'right-3 text-[11px] text-[#05963a]'
+              : 'left-3 text-[11px] text-[#8b6b39]'
+            : isEnglish
+              ? 'right-3 text-[14px] text-[#05963a]'
+              : 'left-3 text-[14px] text-[#8b6b39]'
+        }`}
+      >
+        {isEnglish ? 'English' : 'Hindi'}
+      </span>
+      <span
+        className={`relative z-10 block rounded-full border border-[#d8d8d8] bg-white shadow-[0_8px_20px_rgba(0,0,0,0.18)] ${
+          compact ? 'h-5 w-5' : 'h-8 w-8'
+        }`}
+      />
+      <span className="sr-only">{isEnglish ? 'Switch to Hindi' : 'Switch to English'}</span>
+    </button>
+  )
+}
+
+export default function Navbar({ language = 'hi', onToggleLanguage }) {
   const isEnglish = language === 'en'
   const navLinks = isEnglish
     ? [
@@ -15,17 +58,17 @@ export default function Navbar({ language = 'hi' }) {
         { label: 'Contact', href: '#contact' },
       ]
     : [
-        { label: 'होम', href: '#home' },
-        { label: 'सेवाएं', href: '#services' },
-        { label: 'परिचय', href: '#about' },
-        { label: 'समीक्षाएं', href: '#testimonials' },
+        { label: '\u0939\u094b\u092e', href: '#home' },
+        { label: '\u0938\u0947\u0935\u093e\u090f\u0901', href: '#services' },
+        { label: '\u092a\u0930\u093f\u091a\u092f', href: '#about' },
+        { label: '\u0938\u092e\u0940\u0915\u094d\u0937\u093e\u090f\u0901', href: '#testimonials' },
         { label: 'FAQ', href: '#faq' },
-        { label: 'संपर्क', href: '#contact' },
+        { label: '\u0938\u0902\u092a\u0930\u094d\u0915', href: '#contact' },
       ]
 
-  const brandTitle = isEnglish ? 'Astrology Shastri' : 'ज्योतिष शास्त्री'
-  const brandName = isEnglish ? 'Naresh Bhai Raval' : 'नरेश भाई रावल'
-  const callNowLabel = isEnglish ? 'Call Now' : 'अभी कॉल करें'
+  const brandTitle = isEnglish ? 'Astrology Shastri' : '\u091c\u094d\u092f\u094b\u0924\u093f\u0937 \u0936\u093e\u0938\u094d\u0924\u094d\u0930\u0940'
+  const brandName = isEnglish ? 'Naresh Bhai Raval' : '\u0928\u0930\u0947\u0936 \u092d\u093e\u0908 \u0930\u093e\u0935\u0932'
+  const callNowLabel = isEnglish ? 'Call Now' : '\u0905\u092d\u0940 \u0915\u0949\u0932 \u0915\u0930\u0947\u0902'
 
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
@@ -107,17 +150,20 @@ export default function Navbar({ language = 'hi' }) {
             ))}
           </div>
 
-          <a
-            href={`tel:${brand.phone1}`}
-            className={`inline-flex items-center gap-2 rounded-full px-6 py-3 font-sans text-base font-extrabold transition-all duration-300 ${
-              scrolled
-                ? 'border border-gold-500/60 bg-[rgba(255,248,230,0.96)] text-[#3f2818] shadow-[0_8px_22px_rgba(122,76,24,0.14)]'
-                : 'border border-gold-500/60 bg-[rgba(255,248,230,0.92)] text-[#3f2818] shadow-[0_10px_26px_rgba(45,27,15,0.28)] backdrop-blur-md hover:bg-[rgba(255,251,240,0.98)]'
-            }`}
-          >
-            <span>📞</span>
-            <span>{callNowLabel}</span>
-          </a>
+          <div className="flex items-center gap-3">
+            <LanguageToggle isEnglish={isEnglish} onToggleLanguage={onToggleLanguage} />
+            <a
+              href={`tel:${brand.phone1}`}
+              className={`inline-flex items-center gap-2 rounded-full px-6 py-3 font-sans text-base font-extrabold transition-all duration-300 ${
+                scrolled
+                  ? 'border border-gold-500/60 bg-[rgba(255,248,230,0.96)] text-[#3f2818] shadow-[0_8px_22px_rgba(122,76,24,0.14)]'
+                  : 'border border-gold-500/60 bg-[rgba(255,248,230,0.92)] text-[#3f2818] shadow-[0_10px_26px_rgba(45,27,15,0.28)] backdrop-blur-md hover:bg-[rgba(255,251,240,0.98)]'
+              }`}
+            >
+              <span>{'\uD83D\uDCDE'}</span>
+              <span>{callNowLabel}</span>
+            </a>
+          </div>
         </div>
       </motion.nav>
 
@@ -135,15 +181,18 @@ export default function Navbar({ language = 'hi' }) {
             </div>
           </a>
 
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-xl border border-gold-700/30 bg-white/55"
-            aria-label="Toggle menu"
-          >
-            <motion.span animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 8 : 0 }} className="block h-0.5 w-5 bg-gold-500" />
-            <motion.span animate={{ opacity: menuOpen ? 0 : 1 }} className="block h-0.5 w-5 bg-gold-500" />
-            <motion.span animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -8 : 0 }} className="block h-0.5 w-5 bg-gold-500" />
-          </button>
+          <div className="flex items-center gap-2">
+            <LanguageToggle isEnglish={isEnglish} onToggleLanguage={onToggleLanguage} compact />
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-xl border border-gold-700/30 bg-white/55"
+              aria-label="Toggle menu"
+            >
+              <motion.span animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 8 : 0 }} className="block h-0.5 w-5 bg-gold-500" />
+              <motion.span animate={{ opacity: menuOpen ? 0 : 1 }} className="block h-0.5 w-5 bg-gold-500" />
+              <motion.span animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -8 : 0 }} className="block h-0.5 w-5 bg-gold-500" />
+            </button>
+          </div>
         </div>
 
         <AnimatePresence>
@@ -171,7 +220,7 @@ export default function Navbar({ language = 'hi' }) {
                 ))}
 
                 <a href={`tel:${brand.phone1}`} className="btn-glossy mt-2 rounded-xl px-5 py-3 text-center font-sans text-sm font-bold text-[#3f2818]">
-                  📞 {callNowLabel} - {brand.phone1}
+                  {'\uD83D\uDCDE'} {callNowLabel} - {brand.phone1}
                 </a>
               </div>
             </motion.div>

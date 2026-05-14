@@ -12,15 +12,13 @@ import WhatsAppFloat from './components/WhatsAppFloat'
 
 export default function App() {
   const [language, setLanguage] = useState('hi')
+  const handleToggleLanguage = () => setLanguage(prev => (prev === 'hi' ? 'en' : 'hi'))
 
   return (
     <div className="min-h-screen text-cream overflow-x-hidden">
-      <Navbar language={language} />
+      <Navbar language={language} onToggleLanguage={handleToggleLanguage} />
       <main>
-        <Hero
-          language={language}
-          onToggleLanguage={() => setLanguage(prev => (prev === 'hi' ? 'en' : 'hi'))}
-        />
+        <Hero language={language} />
         <Services language={language} />
         <About language={language} />
         <Testimonials language={language} />

@@ -10,7 +10,7 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] },
 })
 
-export default function Hero({ language = 'hi', onToggleLanguage }) {
+export default function Hero({ language = 'hi' }) {
   const isEnglish = language === 'en'
   const whatsappMsg = encodeURIComponent(
     isEnglish
@@ -47,36 +47,6 @@ export default function Hero({ language = 'hi', onToggleLanguage }) {
       ))}
 
       <div className="relative z-10 max-w-7xl mx-auto w-full px-4 pt-24 pb-10 sm:px-6 md:pt-36 md:pb-20">
-        <motion.div
-          {...fadeUp(0.12)}
-          className="absolute left-1/2 top-24 z-20 flex w-[calc(100%-2rem)] max-w-[220px] -translate-x-1/2 flex-col items-center gap-3 sm:top-28 md:left-auto md:right-6 md:top-24 md:w-auto md:max-w-none md:translate-x-0 md:items-end md:gap-4 lg:right-10 lg:top-28"
-        >
-          <div className="inline-flex items-center rounded-full border border-gold-500/35 bg-[rgba(255,248,235,0.86)] px-3 py-2 backdrop-blur-sm shadow-[0_12px_28px_rgba(122,76,24,0.14)] md:px-5 md:py-2.5">
-            <span className="text-center font-sans text-[10px] font-extrabold uppercase tracking-[0.14em] text-[#7a4c18] md:text-sm md:tracking-[0.18em]">
-              Love Relationship Expert
-            </span>
-          </div>
-
-          <button
-            type="button"
-            onClick={onToggleLanguage}
-            aria-pressed={isEnglish}
-            className={`relative flex h-[42px] w-[132px] items-center rounded-full border-[3px] px-3 transition-all duration-300 md:h-[54px] md:w-[170px] md:border-[4px] md:px-4 ${
-              isEnglish
-                ? 'justify-start border-[#b9ffbf] bg-[#10db53] shadow-[0_12px_28px_rgba(16,219,83,0.24)]'
-                : 'justify-end border-[#f3e6c8] bg-[#d8c8a6] shadow-[0_12px_28px_rgba(122,76,24,0.14)]'
-            }`}
-          >
-            <span className={`absolute text-[12px] font-black leading-none transition-all duration-300 md:text-[20px] ${
-              isEnglish ? 'right-3 text-[#05963a] md:right-4' : 'left-3 text-[#8b6b39] md:left-4'
-            }`}>
-              {isEnglish ? 'English' : 'Hindi'}
-            </span>
-            <span className="relative z-10 block h-[28px] w-[28px] rounded-full border border-[#d8d8d8] bg-white shadow-[0_8px_20px_rgba(0,0,0,0.18)] md:h-[40px] md:w-[40px]" />
-            <span className="sr-only">{isEnglish ? 'Switch to Hindi' : 'Switch to English'}</span>
-          </button>
-        </motion.div>
-
         <div className="flex min-h-[68svh] items-end justify-center md:min-h-[72vh] md:justify-start">
           <motion.div
             {...fadeUp(0.2)}
