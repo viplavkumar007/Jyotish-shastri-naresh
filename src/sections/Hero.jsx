@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import heroBg from '../assets/hero-bg.png'
+import heroMobileBg from '../assets/hero-mobile.png'
 import { brand, hero } from '../data/siteContent'
 
 const fadeUp = (delay = 0) => ({
@@ -20,11 +21,14 @@ export default function Hero({ language = 'hi', onToggleLanguage }) {
   return (
     <section id="home" className="relative min-h-[86svh] md:min-h-screen flex flex-col justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <img
-          src={heroBg}
-          alt="Hero Background"
-          className="w-full h-full object-cover object-[64%_center] md:object-center"
-        />
+        <picture>
+          <source media="(max-width: 767px)" srcSet={heroMobileBg} />
+          <img
+            src={heroBg}
+            alt="Hero Background"
+            className="h-full w-full object-cover object-center md:object-center"
+          />
+        </picture>
         <div className="absolute inset-0 bg-gradient-to-b from-[#fff9ef]/86 via-[#f8ecd7]/66 to-[#f0d9af]/78" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#fffaf0]/88 via-transparent to-[#f6e4c3]/74" />
       </div>
