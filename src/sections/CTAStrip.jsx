@@ -8,7 +8,7 @@ export default function CTAStrip() {
   return (
     <section className="py-16 relative overflow-hidden">
       {/* Animated gold background */}
-      <div className="absolute inset-0 bg-gradient-to-r from-gold-900/60 via-dark-700/80 to-gold-900/60">
+      <div className="absolute inset-0 bg-gradient-to-r from-[#faedd0] via-[#f3dfb7] to-[#f8e7c5]">
         <motion.div
           animate={{ opacity: [0.3, 0.7, 0.3], scale: [1, 1.2, 1] }}
           transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
@@ -38,11 +38,11 @@ export default function CTAStrip() {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.7 }}
         >
-          <p className="font-sans text-gold-400/70 text-sm tracking-[4px] uppercase mb-3">Limited Free Consultation</p>
-          <h2 className="font-hindi text-cream text-3xl md:text-4xl lg:text-5xl font-bold mb-3 leading-relaxed">
+          <p className="font-sans text-gold-700/80 text-sm tracking-[4px] uppercase mb-3">Limited Free Consultation</p>
+          <h2 className="font-hindi text-[#4b2f1a] text-3xl md:text-4xl lg:text-5xl font-bold mb-3 leading-relaxed">
             {ctaStrip.text}
           </h2>
-          <p className="font-body text-cream/60 text-base md:text-lg mb-8">{ctaStrip.subtext}</p>
+          <p className="font-body text-[#6b4a2b]/85 text-base md:text-lg mb-8">{ctaStrip.subtext}</p>
 
           <div className="flex flex-wrap justify-center gap-4">
             <a
@@ -58,7 +58,7 @@ export default function CTAStrip() {
             </a>
             <a
               href={`tel:${brand.phone1}`}
-              className="btn-glossy text-dark-900 font-sans font-bold text-base px-8 py-4 inline-flex items-center gap-3 animate-pulse-gold"
+              className="btn-glossy text-[#3f2818] font-sans font-bold text-base px-8 py-4 inline-flex items-center gap-3 animate-pulse-gold"
             >
               📞 {brand.phone1}
             </a>

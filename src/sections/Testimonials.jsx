@@ -33,7 +33,7 @@ export default function Testimonials() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
-              className="bg-dark-700/60 border border-gold-700/30 rounded-3xl p-8 md:p-10 text-center relative overflow-hidden"
+              className="bg-white/72 border border-gold-700/30 rounded-3xl p-8 md:p-10 text-center relative overflow-hidden"
             >
               {/* Quote mark */}
               <div className="absolute top-4 left-8 text-gold-600/20 font-serif text-9xl leading-none select-none">"</div>
@@ -42,13 +42,13 @@ export default function Testimonials() {
               <div className="stars text-2xl mb-4">
                 {'★'.repeat(testimonials[active].rating)}
               </div>
-              <p className="font-hindi text-cream/90 text-lg md:text-xl leading-relaxed mb-6 relative z-10">
+              <p className="font-hindi text-[#4b2f1a] text-lg md:text-xl leading-relaxed mb-6 relative z-10">
                 "{testimonials[active].text}"
               </p>
               <div className="flex flex-col items-center gap-1">
                 <div className="w-12 h-1 bg-gradient-to-r from-gold-600 to-gold-400 rounded-full mb-3" />
-                <p className="font-sans text-gold-400 font-semibold text-base">{testimonials[active].name}</p>
-                <p className="font-sans text-cream/50 text-sm flex items-center gap-1">
+                <p className="font-sans text-gold-700 font-semibold text-base">{testimonials[active].name}</p>
+                <p className="font-sans text-[#6b4a2b]/75 text-sm flex items-center gap-1">
                   <span>📍</span>{testimonials[active].location}
                 </p>
                 <span className="mt-2 px-3 py-1 rounded-full text-xs font-sans font-medium bg-gold-900/30 border border-gold-700/30 text-gold-400">
@@ -87,16 +87,16 @@ export default function Testimonials() {
               onClick={() => setActive(i)}
               className={`p-5 rounded-2xl border cursor-pointer transition-all duration-300 ${
                 i === active
-                  ? 'bg-dark-700/80 border-gold-500/60 shadow-gold'
-                  : 'bg-dark-700/30 border-gold-700/20 hover:border-gold-600/40 hover:bg-dark-700/50'
+                  ? 'bg-white/80 border-gold-500/60 shadow-gold'
+                  : 'bg-white/55 border-gold-700/20 hover:border-gold-600/40 hover:bg-white/75'
               }`}
             >
               <div className="stars text-sm mb-2">{'★'.repeat(t.rating)}</div>
-              <p className="font-hindi text-cream/75 text-sm leading-relaxed mb-3 line-clamp-3">"{t.text}"</p>
+              <p className="font-hindi text-[#5b3920]/90 text-sm leading-relaxed mb-3 line-clamp-3">"{t.text}"</p>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-sans text-gold-400 text-xs font-semibold">{t.name}</p>
-                  <p className="font-sans text-cream/40 text-xs">{t.location}</p>
+                  <p className="font-sans text-gold-700 text-xs font-semibold">{t.name}</p>
+                  <p className="font-sans text-[#6b4a2b]/70 text-xs">{t.location}</p>
                 </div>
                 <span className="px-2 py-0.5 rounded-full text-xs font-sans bg-gold-900/30 border border-gold-700/30 text-gold-500/70">
                   {t.service}

@@ -77,7 +77,7 @@ export default function Contact() {
     }, 1200)
   }
 
-  const services = ['कुंडली विश्लेषण', 'विवाह भविष्यवाणी', 'वास्तु शास्त्र', 'करियर/व्यापार', 'रत्न परामर्श', 'ग्रह दोष निवारण', 'संतान भविष्यवाणी', 'अन्य']
+  const services = ['वेदिक ज्योतिष', 'प्रश्न कुंडली', 'वास्तु शास्त्र']
 
   return (
     <section id="contact" className="py-24 relative overflow-hidden">
@@ -108,7 +108,7 @@ export default function Contact() {
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.8 }}
           >
-            <h3 className="font-hindi text-cream text-2xl font-bold mb-8">सीधे संपर्क करें</h3>
+            <h3 className="font-hindi text-[#4b2f1a] text-2xl font-bold mb-8">सीधे संपर्क करें</h3>
 
             <div className="flex flex-col gap-5 mb-8">
               {[
@@ -126,14 +126,14 @@ export default function Contact() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="flex items-start gap-4 p-4 rounded-2xl bg-dark-700/50 border border-gold-700/20 hover:border-gold-500/50 hover:bg-dark-700/70 transition-all duration-300 group"
+                  className="flex items-start gap-4 p-4 rounded-2xl bg-white/68 border border-gold-700/20 hover:border-gold-500/50 hover:bg-white/82 transition-all duration-300 group"
                 >
                   <div className="w-11 h-11 rounded-xl bg-gold-900/40 border border-gold-700/30 flex items-center justify-center text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
                     {item.icon}
                   </div>
                   <div>
-                    <p className="font-sans text-gold-500/70 text-xs uppercase tracking-wider mb-0.5">{item.label}</p>
-                    <p className="font-sans text-cream/85 text-sm group-hover:text-gold-400 transition-colors">{item.value}</p>
+                    <p className="font-sans text-gold-700/80 text-xs uppercase tracking-wider mb-0.5">{item.label}</p>
+                    <p className="font-sans text-[#4b2f1a] text-sm group-hover:text-gold-700 transition-colors">{item.value}</p>
                   </div>
                 </motion.a>
               ))}
@@ -154,7 +154,7 @@ export default function Contact() {
               </a>
               <a
                 href={`tel:${brand.phone1}`}
-                className="btn-glossy text-dark-900 font-sans font-bold text-base px-6 py-4 inline-flex items-center justify-center gap-3"
+                className="btn-glossy text-[#3f2818] font-sans font-bold text-base px-6 py-4 inline-flex items-center justify-center gap-3"
               >
                 📞 अभी कॉल करें — {brand.phone1}
               </a>
@@ -168,13 +168,13 @@ export default function Contact() {
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
-            <div className="bg-dark-700/50 border border-gold-700/25 rounded-3xl p-7 md:p-8">
-              <h3 className="font-hindi text-cream text-2xl font-bold mb-6">परामर्श अनुरोध</h3>
+            <div className="bg-white/72 border border-gold-700/25 rounded-3xl p-7 md:p-8">
+              <h3 className="font-hindi text-[#4b2f1a] text-2xl font-bold mb-6">परामर्श अनुरोध</h3>
 
               <form onSubmit={handleSubmit} className="flex flex-col gap-5" noValidate>
                 {/* Name */}
                 <div>
-                  <label className="font-sans text-cream/60 text-xs uppercase tracking-wider mb-1.5 block">आपका नाम *</label>
+                  <label className="font-sans text-[#6b4a2b]/85 text-xs uppercase tracking-wider mb-1.5 block">आपका नाम *</label>
                   <input
                     type="text"
                     placeholder="अपना पूरा नाम दर्ज करें"
@@ -187,7 +187,7 @@ export default function Contact() {
 
                 {/* Phone */}
                 <div>
-                  <label className="font-sans text-cream/60 text-xs uppercase tracking-wider mb-1.5 block">मोबाइल नंबर *</label>
+                  <label className="font-sans text-[#6b4a2b]/85 text-xs uppercase tracking-wider mb-1.5 block">मोबाइल नंबर *</label>
                   <input
                     type="tel"
                     placeholder="10 अंकों का मोबाइल नंबर"
@@ -201,7 +201,7 @@ export default function Contact() {
 
                 {/* Service */}
                 <div>
-                  <label className="font-sans text-cream/60 text-xs uppercase tracking-wider mb-1.5 block">सेवा चुनें</label>
+                  <label className="font-sans text-[#6b4a2b]/85 text-xs uppercase tracking-wider mb-1.5 block">सेवा चुनें</label>
                   <select
                     value={form.service}
                     onChange={e => setForm({ ...form, service: e.target.value })}
@@ -215,7 +215,7 @@ export default function Contact() {
 
                 {/* Message */}
                 <div>
-                  <label className="font-sans text-cream/60 text-xs uppercase tracking-wider mb-1.5 block">आपका संदेश *</label>
+                  <label className="font-sans text-[#6b4a2b]/85 text-xs uppercase tracking-wider mb-1.5 block">आपका संदेश *</label>
                   <textarea
                     placeholder="अपनी समस्या या प्रश्न यहाँ लिखें..."
                     value={form.message}
@@ -230,14 +230,14 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="btn-glossy text-dark-900 font-sans font-bold text-base py-4 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="btn-glossy text-[#3f2818] font-sans font-bold text-base py-4 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                   {loading ? (
                     <>
                       <motion.div
                         animate={{ rotate: 360 }}
                         transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                        className="w-5 h-5 border-2 border-dark-900 border-t-transparent rounded-full"
+                        className="w-5 h-5 border-2 border-[#3f2818] border-t-transparent rounded-full"
                       />
                       <span>भेजा जा रहा है...</span>
                     </>
@@ -249,7 +249,7 @@ export default function Contact() {
                   )}
                 </button>
 
-                <p className="font-sans text-cream/40 text-xs text-center">
+                <p className="font-sans text-[#6b4a2b]/75 text-xs text-center">
                   फॉर्म submit होने पर WhatsApp और Email दोनों खुलेंगे।
                 </p>
               </form>

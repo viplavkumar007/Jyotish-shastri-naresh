@@ -20,7 +20,7 @@ function FAQItem({ faq, index, isOpen, onToggle }) {
           <span className="w-7 h-7 rounded-full bg-gold-900/50 border border-gold-700/40 flex items-center justify-center text-gold-400 text-xs font-sans font-bold flex-shrink-0">
             {index + 1}
           </span>
-          <span className="font-hindi text-cream/90 text-base md:text-lg font-medium">{faq.q}</span>
+          <span className="font-hindi text-[#4b2f1a] text-base md:text-lg font-medium">{faq.q}</span>
         </div>
         <motion.span
           animate={{ rotate: isOpen ? 180 : 0 }}
@@ -42,7 +42,7 @@ function FAQItem({ faq, index, isOpen, onToggle }) {
           >
             <div className="px-5 md:px-6 pb-5 md:pb-6 pt-0">
               <div className="ml-10 pl-3 border-l-2 border-gold-700/40">
-                <p className="font-body text-cream/70 text-sm md:text-base leading-relaxed">{faq.a}</p>
+                <p className="font-body text-[#6b4a2b]/85 text-sm md:text-base leading-relaxed">{faq.a}</p>
               </div>
             </div>
           </motion.div>

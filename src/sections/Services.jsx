@@ -68,11 +68,11 @@ function ServiceCard({ service }) {
       </div>
 
       {/* Content */}
-      <h3 className="font-hindi text-cream text-xl font-semibold mb-1 group-hover:text-gold-400 transition-colors duration-300">
+      <h3 className="font-hindi text-[#4b2f1a] text-xl font-semibold mb-1 group-hover:text-gold-700 transition-colors duration-300">
         {service.title}
       </h3>
-      <p className="font-sans text-gold-600/70 text-xs uppercase tracking-wider mb-3">{service.titleEn}</p>
-      <p className="font-body text-cream/65 text-sm leading-relaxed">
+      <p className="font-sans text-gold-700/80 text-xs uppercase tracking-wider mb-3">{service.titleEn}</p>
+      <p className="font-body text-[#6b4a2b]/85 text-sm leading-relaxed">
         {service.description}
       </p>
 

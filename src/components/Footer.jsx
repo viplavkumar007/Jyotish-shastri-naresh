@@ -19,7 +19,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-dark-900 border-t border-gold-700/25 pt-16 pb-8">
+    <footer className="bg-[#f7ecd8] border-t border-gold-700/25 pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           {/* Brand */}
@@ -27,26 +27,26 @@ export default function Footer() {
             <div className="flex items-center gap-3 mb-5">
               <img src={logo} alt="Logo" className="h-16 w-16 object-contain drop-shadow-[0_0_12px_rgba(212,175,55,0.5)]" />
               <div>
-                <p className="font-hindi text-gold-500 text-sm leading-tight">ज्योतिष शास्त्री</p>
-                <p className="font-hindi text-cream font-semibold text-base leading-tight">नरेश भाई रावल</p>
-                <p className="font-sans text-cream/40 text-xs">University Topper in Astrology</p>
+                <p className="font-hindi text-gold-700 text-sm leading-tight">ज्योतिष शास्त्री</p>
+                <p className="font-hindi text-[#4b2f1a] font-semibold text-base leading-tight">नरेश भाई रावल</p>
+                <p className="font-sans text-[#6b4a2b]/80 text-xs">University Topper in Astrology</p>
               </div>
             </div>
-            <p className="font-hindi text-gold-500/80 text-base italic mb-4">{brand.tagline}</p>
-            <p className="font-body text-cream/50 text-sm leading-relaxed">
+            <p className="font-hindi text-gold-700/80 text-base italic mb-4">{brand.tagline}</p>
+            <p className="font-body text-[#6b4a2b]/85 text-sm leading-relaxed">
               वैदिक ज्योतिष और वास्तु शास्त्र में 10 वर्षों के अनुभव के साथ, राजस्थान और गुजरात में विश्वसनीय ज्योतिषाचार्य।
             </p>
           </div>
 
           {/* Quick links */}
           <div>
-            <h4 className="font-display text-gold-500 text-sm uppercase tracking-widest mb-5">Quick Links</h4>
+            <h4 className="font-display text-gold-700 text-sm uppercase tracking-widest mb-5">Quick Links</h4>
             <div className="flex flex-col gap-2.5">
               {navLinks.map(link => (
                 <button
                   key={link.href}
                   onClick={() => handleNav(link.href)}
-                  className="font-sans text-cream/55 text-sm text-left hover:text-gold-400 transition-colors duration-200 flex items-center gap-2 group"
+                  className="font-sans text-[#5b3920]/85 text-sm text-left hover:text-gold-700 transition-colors duration-200 flex items-center gap-2 group"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-gold-700/50 group-hover:bg-gold-500 transition-colors" />
                   {link.label}
@@ -57,7 +57,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-display text-gold-500 text-sm uppercase tracking-widest mb-5">संपर्क</h4>
+            <h4 className="font-display text-gold-700 text-sm uppercase tracking-widest mb-5">संपर्क</h4>
             <div className="flex flex-col gap-3">
               {[
                 { icon: '📞', text: brand.phone1, href: `tel:${brand.phone1}` },
@@ -68,7 +68,7 @@ export default function Footer() {
                 <a
                   key={i}
                   href={item.href}
-                  className="flex items-start gap-2 font-sans text-cream/55 text-sm hover:text-gold-400 transition-colors duration-200"
+                  className="flex items-start gap-2 font-sans text-[#5b3920]/85 text-sm hover:text-gold-700 transition-colors duration-200"
                 >
                   <span className="flex-shrink-0">{item.icon}</span>
                   <span className="leading-tight">{item.text}</span>
@@ -109,10 +109,10 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-3 text-center">
-          <p className="font-sans text-cream/35 text-xs">
+          <p className="font-sans text-[#6b4a2b]/75 text-xs">
             © {new Date().getFullYear()} ज्योतिष शास्त्री नरेश भाई रावल · {brand.website} · All Rights Reserved
           </p>
-          <p className="font-sans text-cream/25 text-xs">
+          <p className="font-sans text-[#6b4a2b]/65 text-xs">
             Jawai Bandh Road, Sumerpur, Pali, Rajasthan 306902
           </p>
         </div>

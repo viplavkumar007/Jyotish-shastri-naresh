@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import heroBg from '../assets/hero-bg.png'
-import { brand, hero, stats } from '../data/siteContent'
+import { brand, hero } from '../data/siteContent'
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 40 },
@@ -22,8 +22,8 @@ export default function Hero() {
           className="w-full h-full object-cover object-center"
         />
         {/* Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-900/75 via-dark-900/55 to-dark-900/90" />
-        <div className="absolute inset-0 bg-gradient-to-r from-dark-900/80 via-transparent to-dark-900/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#fff9ef]/86 via-[#f8ecd7]/66 to-[#f0d9af]/78" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#fffaf0]/88 via-transparent to-[#f6e4c3]/74" />
       </div>
 
       {/* Floating particles */}
@@ -40,50 +40,16 @@ export default function Hero() {
         />
       ))}
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 md:py-32 w-full">
-        <div className="max-w-3xl">
-          {/* Badge */}
-          <motion.div {...fadeUp(0.1)} className="inline-flex items-center gap-2 mb-6">
-            <span className="px-4 py-1.5 rounded-full border border-gold-600/50 bg-gold-900/20 text-gold-400 font-sans text-sm font-medium tracking-widest backdrop-blur-sm">
-              {hero.badge}
-            </span>
-          </motion.div>
-
-          {/* Headline */}
-          <motion.div {...fadeUp(0.2)}>
-            <h1 className="font-hindi leading-tight mb-2">
-              <span className="block text-cream/90 text-2xl md:text-3xl mb-1">{hero.headline}</span>
-              <span className="block text-gold-gradient text-5xl md:text-7xl font-bold drop-shadow-[0_4px_20px_rgba(212,175,55,0.4)]">
-                {hero.headlineName}
-              </span>
-            </h1>
-          </motion.div>
-
-          {/* Subheadline */}
-          <motion.div {...fadeUp(0.3)} className="flex items-center gap-3 my-4">
-            <span className="h-px flex-1 max-w-16 bg-gradient-to-r from-transparent to-gold-600" />
-            <span className="font-display text-gold-400 text-sm md:text-base tracking-wider uppercase">
-              {hero.subheadline}
-            </span>
-            <span className="h-px flex-1 max-w-16 bg-gradient-to-l from-transparent to-gold-600" />
-          </motion.div>
-
-          {/* Tagline */}
-          <motion.p {...fadeUp(0.35)} className="font-hindi text-cream/80 text-xl md:text-2xl mb-4">
-            {brand.tagline}
-          </motion.p>
-
-          {/* Description */}
-          <motion.p {...fadeUp(0.4)} className="font-body text-cream/70 text-base md:text-lg leading-relaxed mb-8 max-w-xl">
-            {hero.description}
-          </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div {...fadeUp(0.5)} className="flex flex-wrap gap-4 mb-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-16 md:pt-36 md:pb-20 w-full">
+        <div className="min-h-[72vh] flex items-end justify-start">
+          <motion.div
+            {...fadeUp(0.2)}
+            className="ml-0 md:ml-4 mb-2 md:mb-6 flex max-w-[720px] flex-wrap justify-start gap-4 rounded-[2rem] border border-white/50 bg-white/46 px-5 py-5 backdrop-blur-md shadow-[0_20px_50px_rgba(122,76,24,0.18)]"
+          >
             <a
               href="#contact"
               onClick={(e) => { e.preventDefault(); document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }) }}
-              className="btn-glossy text-dark-900 font-sans font-bold text-base px-7 py-3.5 inline-flex items-center gap-2 shadow-gold"
+              className="btn-glossy text-[#3f2818] font-sans font-bold text-base px-7 py-3.5 inline-flex items-center gap-2 shadow-gold"
             >
               <span>🔮</span>
               <span>{hero.cta1}</span>
@@ -107,40 +73,8 @@ export default function Hero() {
               <span>{brand.phone1}</span>
             </a>
           </motion.div>
-
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.65 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4"
-          >
-            {stats.map((stat, i) => (
-              <motion.div
-                key={i}
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.7 + i * 0.1 }}
-                className="bg-dark-800/70 backdrop-blur-sm border border-gold-700/25 rounded-2xl p-4 text-center hover:border-gold-500/50 transition-all duration-300"
-              >
-                <div className="text-2xl mb-1">{stat.icon}</div>
-                <div className="font-display text-gold-400 text-xl font-bold">{stat.value}</div>
-                <div className="font-hindi text-cream/60 text-xs leading-tight mt-1">{stat.label}</div>
-              </motion.div>
-            ))}
-          </motion.div>
         </div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-2"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
-        <span className="font-sans text-cream/40 text-xs tracking-widest uppercase">Scroll</span>
-        <div className="w-px h-8 bg-gradient-to-b from-gold-600/60 to-transparent" />
-      </motion.div>
     </section>
   )
 }

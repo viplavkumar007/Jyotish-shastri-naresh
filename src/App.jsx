@@ -12,7 +12,7 @@ import WhatsAppFloat from './components/WhatsAppFloat'
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-dark-900 text-cream overflow-x-hidden">
+    <div className="min-h-screen text-cream overflow-x-hidden">
       <Navbar />
       <main>
         <Hero />
