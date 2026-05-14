@@ -1,0 +1,86 @@
+import React from 'react'
+import { motion } from 'framer-motion'
+import { services } from '../data/siteContent'
+
+const useScrollReveal = () => ({
+  initial: { opacity: 0, y: 50 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.25 },
+})
+
+export default function Services() {
+  return (
+    <section id="services" className="py-24 bg-mandala relative overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gold-700/5 blur-[120px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Section header */}
+        <motion.div
+          {...useScrollReveal()}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-16"
+        >
+          <p className="font-sans text-gold-500 text-sm tracking-[4px] uppercase mb-3">Our Services</p>
+          <h2 className="section-title text-4xl md:text-5xl font-bold mb-4">हमारी सेवाएं</h2>
+          <div className="gold-divider w-32 mx-auto mb-5" />
+          <p className="section-subtitle text-lg max-w-2xl mx-auto">
+            वैदिक ज्योतिष की प्राचीन विद्या से आधुनिक जीवन की हर समस्या का समाधान
+          </p>
+        </motion.div>
+
+        {/* Cards grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((service, i) => (
+            <motion.div
+              key={service.id}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.6, delay: (i % 3) * 0.12, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <ServiceCard service={service} />
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function ServiceCard({ service }) {
+  return (
+    <div
+      className="service-card p-6 h-full group cursor-pointer"
+      style={{ '--card-border': service.border }}
+    >
+      {/* Gradient top bar */}
+      <div
+        className={`absolute top-0 left-0 right-0 h-1 rounded-t-[20px] bg-gradient-to-r ${service.color.replace('/40', '').replace('/20', '')}`}
+        style={{ opacity: 0.7 }}
+      />
+
+      {/* Icon */}
+      <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center text-3xl mb-5 group-hover:scale-110 transition-transform duration-300 border`}
+        style={{ borderColor: service.border }}
+      >
+        {service.icon}
+      </div>
+
+      {/* Content */}
+      <h3 className="font-hindi text-cream text-xl font-semibold mb-1 group-hover:text-gold-400 transition-colors duration-300">
+        {service.title}
+      </h3>
+      <p className="font-sans text-gold-600/70 text-xs uppercase tracking-wider mb-3">{service.titleEn}</p>
+      <p className="font-body text-cream/65 text-sm leading-relaxed">
+        {service.description}
+      </p>
+
+      {/* CTA */}
+      <div className="mt-5 flex items-center gap-2 text-gold-500 text-sm font-sans font-medium group-hover:gap-3 transition-all duration-300">
+        <span>अधिक जानें</span>
+        <span className="text-base">→</span>
+      </div>
+    </div>
+  )
+}
