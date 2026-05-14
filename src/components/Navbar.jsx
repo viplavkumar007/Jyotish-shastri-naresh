@@ -3,16 +3,26 @@ import { motion, AnimatePresence } from 'framer-motion'
 import logo from '../assets/logo.png'
 import { brand } from '../data/siteContent'
 
-const navLinks = [
-  { label: 'होम', href: '#home' },
-  { label: 'सेवाएं', href: '#services' },
-  { label: 'परिचय', href: '#about' },
-  { label: 'समीक्षाएं', href: '#testimonials' },
-  { label: 'FAQ', href: '#faq' },
-  { label: 'संपर्क', href: '#contact' },
-]
+export default function Navbar({ language = 'hi' }) {
+  const isEnglish = language === 'en'
+  const navLinks = isEnglish
+    ? [
+        { label: 'Home', href: '#home' },
+        { label: 'Services', href: '#services' },
+        { label: 'About', href: '#about' },
+        { label: 'Reviews', href: '#testimonials' },
+        { label: 'FAQ', href: '#faq' },
+        { label: 'Contact', href: '#contact' },
+      ]
+    : [
+        { label: 'होम', href: '#home' },
+        { label: 'सेवाएं', href: '#services' },
+        { label: 'परिचय', href: '#about' },
+        { label: 'समीक्षाएं', href: '#testimonials' },
+        { label: 'FAQ', href: '#faq' },
+        { label: 'संपर्क', href: '#contact' },
+      ]
 
-export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
   const [menuOpen, setMenuOpen] = useState(false)
@@ -30,30 +40,32 @@ export default function Navbar() {
       }
     }
     window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  }, [language])
 
   const handleNav = (href) => {
     setMenuOpen(false)
-    const el = document.querySelector(href)
-    if (el) el.scrollIntoView({ behavior: 'smooth' })
+    window.setTimeout(() => {
+      const el = document.querySelector(href)
+      if (!el) return
+      const navOffset = window.innerWidth >= 768 ? 88 : 76
+      const targetTop = el.getBoundingClientRect().top + window.scrollY - navOffset
+      window.scrollTo({ top: Math.max(targetTop, 0), behavior: 'smooth' })
+    }, 10)
   }
 
   return (
     <>
-      {/* DESKTOP NAVBAR */}
       <motion.nav
         initial={{ y: -80 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className={`hidden md:flex fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? 'bg-white border-b border-gold-700/25 shadow-[0_10px_28px_rgba(122,76,24,0.14)]'
-            : 'bg-transparent'
+          scrolled ? 'bg-white border-b border-gold-700/25 shadow-[0_10px_28px_rgba(122,76,24,0.14)]' : 'bg-transparent'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 w-full flex items-center justify-between h-20">
-          {/* Logo */}
           <a href="#home" onClick={(e) => { e.preventDefault(); handleNav('#home') }} className="flex items-center gap-3 group">
             <img src={logo} alt="Logo" className="h-14 w-14 object-contain drop-shadow-[0_0_12px_rgba(212,175,55,0.6)] group-hover:drop-shadow-[0_0_20px_rgba(212,175,55,0.9)] transition-all duration-300" />
             <div className="flex flex-col">
@@ -62,7 +74,6 @@ export default function Navbar() {
             </div>
           </a>
 
-          {/* Nav links */}
           <div className="flex items-center gap-3">
             {navLinks.map(link => (
               <button
@@ -83,18 +94,16 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* CTA */}
           <a
             href={`tel:${brand.phone1}`}
             className={`font-sans font-extrabold text-base px-6 py-3 inline-flex items-center gap-2 rounded-full transition-all duration-300 ${scrolled ? 'bg-[rgba(255,248,230,0.96)] border border-gold-500/60 text-[#3f2818] shadow-[0_8px_22px_rgba(122,76,24,0.14)]' : 'bg-[rgba(255,248,230,0.92)] border border-gold-500/60 text-[#3f2818] shadow-[0_10px_26px_rgba(45,27,15,0.28)] backdrop-blur-md hover:bg-[rgba(255,251,240,0.98)]'}`}
           >
             <span>📞</span>
-            <span>अभी कॉल करें</span>
+            <span>{isEnglish ? 'Call Now' : 'अभी कॉल करें'}</span>
           </a>
         </div>
       </motion.nav>
 
-      {/* MOBILE NAVBAR - above hero */}
       <div className="md:hidden bg-[#fff7ea]/98 backdrop-blur-xl border-b border-gold-700/35 shadow-[0_10px_24px_rgba(184,134,11,0.12)] sticky top-0 z-50">
         <div className="flex items-center justify-between px-4 py-3">
           <a href="#home" onClick={(e) => { e.preventDefault(); handleNav('#home') }} className="flex items-center gap-2">
@@ -104,53 +113,27 @@ export default function Navbar() {
               <div className="font-hindi text-[#4b2f1a] text-sm font-semibold leading-tight">नरेश भाई रावल</div>
             </div>
           </a>
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="w-10 h-10 flex flex-col items-center justify-center gap-1.5 rounded-xl border border-gold-700/30 bg-white/55"
-            aria-label="Toggle menu"
-          >
-            <motion.span
-              animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 8 : 0 }}
-              className="block w-5 h-0.5 bg-gold-500"
-            />
-            <motion.span
-              animate={{ opacity: menuOpen ? 0 : 1 }}
-              className="block w-5 h-0.5 bg-gold-500"
-            />
-            <motion.span
-              animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -8 : 0 }}
-              className="block w-5 h-0.5 bg-gold-500"
-            />
+          <button onClick={() => setMenuOpen(!menuOpen)} className="w-10 h-10 flex flex-col items-center justify-center gap-1.5 rounded-xl border border-gold-700/30 bg-white/55" aria-label="Toggle menu">
+            <motion.span animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 8 : 0 }} className="block w-5 h-0.5 bg-gold-500" />
+            <motion.span animate={{ opacity: menuOpen ? 0 : 1 }} className="block w-5 h-0.5 bg-gold-500" />
+            <motion.span animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -8 : 0 }} className="block w-5 h-0.5 bg-gold-500" />
           </button>
         </div>
         <AnimatePresence>
           {menuOpen && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="overflow-hidden bg-[#fff3df] border-t border-gold-700/20"
-            >
+            <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }} className="overflow-hidden bg-[#fff3df] border-t border-gold-700/20">
               <div className="px-4 py-3 flex flex-col gap-1">
                 {navLinks.map(link => (
                   <button
                     key={link.href}
                     onClick={() => handleNav(link.href)}
-                    className={`text-left py-3 px-4 rounded-xl text-sm font-sans font-medium transition-all ${
-                      activeSection === link.href.slice(1)
-                        ? 'bg-gold-700/20 text-gold-700'
-                        : 'text-[#5a3920] hover:bg-white/60 hover:text-gold-700'
-                    }`}
+                    className={`text-left py-3 px-4 rounded-xl text-sm font-sans font-medium transition-all ${activeSection === link.href.slice(1) ? 'bg-gold-700/20 text-gold-700' : 'text-[#5a3920] hover:bg-white/60 hover:text-gold-700'}`}
                   >
                     {link.label}
                   </button>
                 ))}
-                <a
-                  href={`tel:${brand.phone1}`}
-                  className="btn-glossy text-[#3f2818] font-sans font-bold text-sm px-5 py-3 text-center mt-2 rounded-xl"
-                >
-                  📞 अभी कॉल करें — {brand.phone1}
+                <a href={`tel:${brand.phone1}`} className="btn-glossy text-[#3f2818] font-sans font-bold text-sm px-5 py-3 text-center mt-2 rounded-xl">
+                  📞 {isEnglish ? 'Call Now' : 'अभी कॉल करें'} — {brand.phone1}
                 </a>
               </div>
             </motion.div>

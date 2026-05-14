@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './sections/Hero'
 import Services from './sections/Services'
@@ -11,20 +11,25 @@ import Footer from './components/Footer'
 import WhatsAppFloat from './components/WhatsAppFloat'
 
 export default function App() {
+  const [language, setLanguage] = useState('hi')
+
   return (
     <div className="min-h-screen text-cream overflow-x-hidden">
-      <Navbar />
+      <Navbar language={language} />
       <main>
-        <Hero />
-        <Services />
-        <About />
-        <Testimonials />
-        <CTAStrip />
-        <FAQ />
-        <Contact />
+        <Hero
+          language={language}
+          onToggleLanguage={() => setLanguage(prev => (prev === 'hi' ? 'en' : 'hi'))}
+        />
+        <Services language={language} />
+        <About language={language} />
+        <Testimonials language={language} />
+        <CTAStrip language={language} />
+        <FAQ language={language} />
+        <Contact language={language} />
       </main>
-      <Footer />
-      <WhatsAppFloat />
+      <Footer language={language} />
+      <WhatsAppFloat language={language} />
     </div>
   )
 }
